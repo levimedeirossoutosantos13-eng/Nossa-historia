@@ -94,7 +94,6 @@ header h1 {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* ESCONDER O PLAYER */
 .music-player-final { display: none; }
 
 footer { margin: 50px 0; color: var(--azul-escuro); font-weight: 600; }

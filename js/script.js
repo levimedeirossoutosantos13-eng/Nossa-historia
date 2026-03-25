@@ -1,40 +1,37 @@
-// Este script simples faz os cards "aparecerem" com animação ao rolar a página
-
-const debounce = function(func, wait, immediate) {
-    let timeout;
-    return function(...args) {
-        const context = this;
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
+// --- LÓGICA DA MÚSICA (TOCANDO DO INÍCIO DO ARQUIVO CORTADO) ---
+const iniciarSom = () => {
+    const audio = document.getElementById('musica');
+    if (audio) {
+        audio.muted = false; // Garante que o som não esteja mudo
+        
+        // Tentativa de play imediato após interação
+        audio.play().then(() => {
+            console.log("Música iniciada com sucesso!");
+            // Remove os ouvintes para a música não reiniciar a cada clique
+            document.removeEventListener('click', iniciarSom);
+            document.removeEventListener('touchstart', iniciarSom);
+            document.removeEventListener('scroll', iniciarSom);
+        }).catch(e => {
+            console.log("Aguardando interação para soltar o som: ", e);
+        });
+    }
 };
 
-const target = document.querySelectorAll('[data-anime]');
-const animationClass = 'animate';
+// Ativa o som no primeiro clique, toque ou rolagem
+document.addEventListener('click', iniciarSom);
+document.addEventListener('touchstart', iniciarSom);
+document.addEventListener('scroll', iniciarSom);
 
+// --- ANIMAÇÃO DAS FOTOS ---
+const target = document.querySelectorAll('[data-anime]');
 function animeScroll() {
     const windowTop = window.pageYOffset + ((window.innerHeight * 3) / 4);
-    target.forEach(function(element) {
-        if((windowTop) > element.offsetTop) {
-            element.classList.add(animationClass);
-        } else {
-            element.classList.remove(animationClass); // Opcional: remove ao subir
+    target.forEach(el => {
+        if (windowTop > el.offsetTop) {
+            el.classList.add('animate');
         }
     });
 }
 
-// Ativa a verificação inicial e ao rolar
-if(target.length) {
-    window.addEventListener('scroll', debounce(function() {
-        animeScroll();
-    }, 200));
-}
-
-// Ativa no carregamento para os primeiros cards
+window.addEventListener('scroll', animeScroll);
 window.onload = animeScroll;

@@ -94,6 +94,7 @@ header h1 {
     to { transform: translateY(0); opacity: 1; }
 }
 
-.music-player-final { display: none; }
+/* Forçar o player a sumir */
+.music-player-final { display: none !important; }
 
 footer { margin: 50px 0; color: var(--azul-escuro); font-weight: 600; }

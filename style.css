@@ -23,6 +23,12 @@ header h1 {
     font-size: 3.5rem;
     color: var(--azul-escuro);
     margin: 30px 0;
+    text-align: center;
+}
+
+header p {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Estilo da Seção de Datas */
@@ -64,6 +70,7 @@ header h1 {
 
 .texto {
     color: #546e7a;
+    text-align: right;
 }
 
 .divisor-coracao {
@@ -95,8 +102,9 @@ header h1 {
 .legenda {
     position: absolute;
     bottom: -100%;
-    left: 0; width: 100%;
-    background: rgba(0, 96, 100, 0.9); /* Azul escuro na legenda */
+    left: 0; 
+    width: 100%;
+    background: rgba(0, 96, 100, 0.9);
     color: white;
     padding: 15px;
     text-align: center;
@@ -115,4 +123,21 @@ header h1 {
     to { transform: translateY(0); opacity: 1; }
 }
 
-footer { margin: 50px 0; color: var(--azul-escuro); font-weight: 600; }
+/* --- ESTILO DO PLAYER DE MÚSICA (OCULTO) --- */
+.music-player-final {
+    display: none; /* Isso esconde o player completamente */
+}
+
+/* Opcional: mantive o estilo do audio aqui caso queira voltar, mas como o pai está oculto, ele não aparece */
+audio {
+    height: 35px;
+    width: 100%;
+    max-width: 280px;
+    filter: sepia(100%) saturate(150%) hue-rotate(150deg);
+}
+
+footer { 
+    margin: 50px 0; 
+    color: var(--azul-escuro); 
+    font-weight: 600; 
+}
